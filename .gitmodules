@@ -1,0 +1,3 @@
+[submodule "noir-wallet"]
+	path = noir-wallet
+	url = https://github.com/yraretil/noir-wallet
