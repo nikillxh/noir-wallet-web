@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111313" />
+    <title>The Custody–Privacy Gap — NOIR Wallet</title>
+    <meta
+      name="description"
+      content="Research using Noir Wallet to examine where hardware-backed self-custody ends and transaction privacy begins."
+    />
+    <link rel="canonical" href="https://noirwallet.vercel.app/paper" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="NOIR Wallet" />
+    <meta property="og:title" content="The Custody–Privacy Gap" />
+    <meta
+      property="og:description"
+      content="What a ten-dollar hardware wallet reveals about self-custody on public ledgers."
+    />
+    <meta property="og:url" content="https://noirwallet.vercel.app/paper" />
+    <meta
+      property="og:image"
+      content="https://noirwallet.vercel.app/social/noir-paper-card.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="680" />
+    <meta property="og:image:height" content="381" />
+    <meta
+      property="og:image:alt"
+      content="First page of The Custody–Privacy Gap research paper"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@NoirWallet" />
+    <meta name="twitter:title" content="The Custody–Privacy Gap" />
+    <meta
+      name="twitter:description"
+      content="What a ten-dollar hardware wallet reveals about self-custody on public ledgers."
+    />
+    <meta
+      name="twitter:image"
+      content="https://noirwallet.vercel.app/social/noir-paper-card.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="First page of The Custody–Privacy Gap research paper"
+    />
+
+    <style>
+      :root {
+        color: #f2f1eb;
+        background: #111313;
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+        font-synthesis: none;
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-width: 320px;
+        min-height: 100%;
+        margin: 0;
+        background: #111313;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: 100svh;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 2rem;
+        min-height: 4.75rem;
+        padding: 0.85rem 1.5rem;
+        border-bottom: 1px solid rgba(242, 241, 235, 0.18);
+        background: #111313;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .brand,
+      .actions a {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .brand {
+        text-decoration: none;
+      }
+
+      .paper-title {
+        min-width: 0;
+      }
+
+      h1 {
+        overflow: hidden;
+        margin: 0;
+        color: #f2f1eb;
+        font-size: clamp(0.76rem, 1.3vw, 1rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .paper-title p {
+        margin: 0.24rem 0 0;
+        color: #898f8d;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.54rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+        white-space: nowrap;
+      }
+
+      .actions a {
+        text-underline-offset: 0.3rem;
+      }
+
+      a:focus-visible {
+        border-radius: 2px;
+        outline: 2px solid #dfe7fb;
+        outline-offset: 0.35rem;
+      }
+
+      .reader {
+        min-height: 0;
+        padding: 0.75rem;
+        background: #1a1c1c;
+      }
+
+      object {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 0.25rem;
+        background: #fff;
+      }
+
+      .fallback {
+        display: grid;
+        height: 100%;
+        place-content: center;
+        gap: 0.8rem;
+        padding: 2rem;
+        color: #c8cdcb;
+        text-align: center;
+      }
+
+      .fallback p {
+        margin: 0;
+      }
+
+      @media (max-width: 680px) {
+        header {
+          grid-template-columns: auto 1fr;
+          gap: 0.5rem 1rem;
+          padding: 0.8rem 1rem;
+        }
+
+        .paper-title {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+
+        .actions {
+          justify-self: end;
+        }
+
+        .actions a:first-child {
+          display: none;
+        }
+
+        .reader {
+          padding: 0;
+        }
+
+        object {
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="Back to NOIR home">NOIR / v0</a>
+      <div class="paper-title">
+        <h1>The Custody–Privacy Gap</h1>
+        <p>Arnav Panjla · Sahitya Shankar · Ledger N3XT</p>
+      </div>
+      <nav class="actions" aria-label="Paper actions">
+        <a href="/paper/Noir_Wallet.pdf" target="_blank" rel="noopener">Open PDF</a>
+        <a href="/paper/Noir_Wallet.pdf" download>Download</a>
+      </nav>
+    </header>
+    <main class="reader">
+      <object
+        data="/paper/Noir_Wallet.pdf#view=FitH"
+        type="application/pdf"
+        aria-label="The Custody–Privacy Gap research paper"
+      >
+        <div class="fallback">
+          <p>Your browser cannot display this PDF inline.</p>
+          <a href="/paper/Noir_Wallet.pdf">Open the paper directly</a>
+        </div>
+      </object>
+    </main>
+  </body>
+</html>

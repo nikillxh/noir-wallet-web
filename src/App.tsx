@@ -73,7 +73,10 @@ export default function App() {
       </main>
       <footer className="site-footer">
         <span>NOIR / v0</span>
-        <a href="https://x.com/NoirWallet">Follow @NoirWallet on X</a>
+        <nav className="site-footer__links" aria-label="Project links">
+          <a href="/paper">Read the paper</a>
+          <a href="https://x.com/NoirWallet">Follow @NoirWallet on X</a>
+        </nav>
       </footer>
     </>
   )

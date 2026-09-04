@@ -523,6 +523,11 @@ canvas {
   transition: color 160ms ease, text-decoration-color 160ms ease;
 }
 
+.site-footer__links {
+  display: flex;
+  gap: 1.6rem;
+}
+
 .site-footer a:hover {
   color: #bfcce9;
   text-decoration-color: currentColor;
@@ -672,6 +677,12 @@ canvas {
     min-height: 8rem;
     padding: 1.7rem 1.25rem;
     font-size: 0.53rem;
+  }
+
+  .site-footer__links {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.9rem;
   }
 }
 
