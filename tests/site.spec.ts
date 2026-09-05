@@ -1,11 +1,18 @@
 import { expect, test } from '@playwright/test'
 
-test('hero, hardware sequence, and footer work end to end', async ({ page }, testInfo) => {
+test('hero, hardware sequence, and footer work end to end', async (
+  { page, request },
+  testInfo,
+) => {
   const runtimeErrors: string[] = []
   page.on('pageerror', (error) => runtimeErrors.push(error.message))
   page.on('console', (message) => {
     if (message.type() === 'error') runtimeErrors.push(message.text())
   })
+
+  const initialHtml = await (await request.get('/')).text()
+  expect(initialHtml).toContain('Preparing hardware model')
+  expect(initialHtml).not.toContain('<canvas')
 
   await page.goto('/')
 
@@ -81,10 +88,7 @@ test('paper page embeds the PDF and exposes social metadata', async ({ page, req
     'href',
     '/paper/Noir_Wallet.pdf',
   )
-  await expect(page.locator('object .fallback a')).toHaveAttribute(
-    'href',
-    '/paper/Noir_Wallet.pdf',
-  )
+  await expect(page.locator('object a')).toHaveAttribute('href', '/paper/Noir_Wallet.pdf')
   await expect(page.getByRole('link', { name: 'Back to NOIR home' })).toHaveAttribute(
     'href',
     '/',

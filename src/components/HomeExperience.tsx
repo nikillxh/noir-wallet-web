@@ -1,7 +1,14 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import NoirHero from './components/NoirHero'
+'use client'
 
-const ExplodedWallet = lazy(() => import('./components/ExplodedWallet'))
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import NoirHero from './NoirHero'
+
+const ExplodedWallet = dynamic(() => import('./ExplodedWallet'), {
+  loading: ProductPlaceholder,
+  ssr: false,
+})
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false)
@@ -35,7 +42,7 @@ function ProductPlaceholder() {
   )
 }
 
-export default function App() {
+export default function HomeExperience() {
   const reducedMotion = useReducedMotion()
   const loadTrigger = useRef<HTMLDivElement>(null)
   const [loadProduct, setLoadProduct] = useState(false)
@@ -63,9 +70,7 @@ export default function App() {
         <NoirHero reducedMotion={reducedMotion} />
         <div ref={loadTrigger} className="product-shell">
           {loadProduct ? (
-            <Suspense fallback={<ProductPlaceholder />}>
-              <ExplodedWallet reducedMotion={reducedMotion} />
-            </Suspense>
+            <ExplodedWallet reducedMotion={reducedMotion} />
           ) : (
             <ProductPlaceholder />
           )}
@@ -74,7 +79,7 @@ export default function App() {
       <footer className="site-footer">
         <span>NOIR / v0</span>
         <nav className="site-footer__links" aria-label="Project links">
-          <a href="/paper">Read the paper</a>
+          <Link href="/paper">Read the paper</Link>
           <a href="https://x.com/NoirWallet">Follow @NoirWallet on X</a>
         </nav>
       </footer>
